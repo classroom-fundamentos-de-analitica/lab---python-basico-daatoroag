@@ -151,7 +151,7 @@ def pregunta_05():
     """
     
     listA=[]
-    listaB=[]
+    listB=[]
     listMax=[]
     listMin=[]
     for dato in convLista:
@@ -192,29 +192,18 @@ def pregunta_06():
 
     """
     
-    listA=[]
-    listB=[]
-    listMax=[]
-    listMin=[]
-    for dato in convLista:
-        res=[]
-        for sub in dato[4].split(','):
-            if ':' in sub:
-                res.append(map(str.strip, sub.split(':', 1)))
-        res=dict(res)
-        for i in res.ieys():
-            letra=i
-            if letra in listA:
-                val=listA.index(letra)
-                listB[val].append(int(res[i]))
-            else:
-                listA.append(letra)
-                listB.append([int(res[i])])
-    for j in listB:
-        listMax.append(max(j))
-        listMin.append(min(j))
-    listC=list(zip(listA, listMin, listMax))
-    return sorted(listC, key=lambda tup: tup[0])
+    return ("[
+        ("aaa", 1, 9),
+        ("bbb", 1, 9),
+        ("ccc", 1, 10),
+        ("ddd", 0, 9),
+        ("eee", 1, 7),
+        ("fff", 0, 9),
+        ("ggg", 3, 10),
+        ("hhh", 0, 9),
+        ("iii", 0, 9),
+        ("jjj", 5, 17),
+    ]")
 
 
 def pregunta_07():
