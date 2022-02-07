@@ -12,6 +12,14 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+with open("./data.csv", "r") as file:
+    datos = file.readlines()
+
+datoscsv = [line.replace("\n", "") for line in datos]
+
+convLista = [line.split("\t") for line in datoscsv]
+
+
 
 def pregunta_01():
     """
@@ -23,7 +31,7 @@ def pregunta_01():
     """
     
     sum = 0
-    for dato in datosPreparados:
+    for dato in convLista:
         sum+=int(dato[1])
     return sum
 
@@ -46,7 +54,7 @@ def pregunta_02():
     
     listA=[]
     listB=[]
-    for dato in datosPreparados:
+    for dato in convLista:
         letra=dato[0]
         if letra in listA:
             val=listA.index(letra)
@@ -76,7 +84,7 @@ def pregunta_03():
     
     listA = []
     listB = []
-    for dato in datosPreparados:
+    for dato in convLista:
         letra=dato[0]
         if letra in listA:
             val=listA.index(letra)
@@ -113,7 +121,7 @@ def pregunta_04():
     
     listA=[]
     listB=[]
-    for dato in datosPreparados:
+    for dato in convLista:
         fecha=dato[2].split('-')
         mes=fecha[1]
         if mes in listA:
@@ -146,7 +154,7 @@ def pregunta_05():
     listaB=[]
     listMax=[]
     listMin=[]
-    for dato in datosPreparados:
+    for dato in convLista:
         letra=dato[0]
         if letra in listA:
             val=listA.index(letra)
@@ -188,7 +196,7 @@ def pregunta_06():
     listB=[]
     listMax=[]
     listMin=[]
-    for dato in datosPreparados:
+    for dato in convLista:
         res=[]
         for sub in dato[4].split(','):
             if ':' in sub:
@@ -233,7 +241,7 @@ def pregunta_07():
     
     listA = []
     listB = []
-    for dato in datosPreparados:
+    for dato in convLista:
         num = int(dato[1])
         if num in listA:
             val = listA.index(num)
@@ -270,7 +278,7 @@ def pregunta_08():
     
     listA=[]
     listB=[]
-    for dato in datosPreparados:
+    for dato in convLista:
         num=int(dato[1])
         if num in listA:
             val=listA.index(num)
@@ -309,7 +317,7 @@ def pregunta_09():
     listA=[]
     listX=[]
     listB=[]
-    for dato in datosPreparados:
+    for dato in convLista:
         res=[]
         for sub in dato[4].split(','):
             if ':' in sub:
@@ -351,7 +359,7 @@ def pregunta_10():
     listA=[]
     listF=[]
     listZ=[]
-    for dato in datosPreparados:
+    for dato in convLista:
         res=[]
         listA.append(dato[0])
         listC=dato[3].split(',')
@@ -385,7 +393,7 @@ def pregunta_11():
     """
 
     dic={}
-    for dato in datosPreparados:
+    for dato in convLista:
         valor=int(dato[1])
         for letra in dato[3].split(','):
             if letra in dic:
@@ -412,7 +420,7 @@ def pregunta_12():
     """
 
     dic={}
-    for dato in datosPreparados:
+    for dato in convLista:
         res=[]
         letra=dato[0]
         for sub in dato[4].split(','):
