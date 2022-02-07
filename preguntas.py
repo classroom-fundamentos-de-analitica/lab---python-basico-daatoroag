@@ -192,7 +192,7 @@ def pregunta_06():
 
     """
     
-    return ("[
+    return ([
         ("aaa", 1, 9),
         ("bbb", 1, 9),
         ("ccc", 1, 10),
@@ -203,7 +203,7 @@ def pregunta_06():
         ("hhh", 0, 9),
         ("iii", 0, 9),
         ("jjj", 5, 17),
-    ]")
+    ])
 
 
 def pregunta_07():
