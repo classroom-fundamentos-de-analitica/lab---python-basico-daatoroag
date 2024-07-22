@@ -12,6 +12,14 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+with open("./data.csv", "r") as file:
+    datos = file.readlines()
+
+datoscsv = [line.replace("\n", "") for line in datos]
+
+convLista = [line.split("\t") for line in datoscsv]
+
+
 
 def pregunta_01():
     """
@@ -21,7 +29,11 @@ def pregunta_01():
     214
 
     """
-    return
+    
+    sum = 0
+    for dato in convLista:
+        sum+=int(dato[1])
+    return sum
 
 
 def pregunta_02():
@@ -39,7 +51,19 @@ def pregunta_02():
     ]
 
     """
-    return
+    
+    listA=[]
+    listB=[]
+    for dato in convLista:
+        letra=dato[0]
+        if letra in listA:
+            val=listA.index(letra)
+            listB[val]+=1
+        else:
+            listA.append(letra)
+            listB.append(1)
+    listC=list(zip(listA, listB))
+    return sorted(listC, key=lambda tup: tup[0])
 
 
 def pregunta_03():
@@ -57,7 +81,19 @@ def pregunta_03():
     ]
 
     """
-    return
+    
+    listA = []
+    listB = []
+    for dato in convLista:
+        letra=dato[0]
+        if letra in listA:
+            val=listA.index(letra)
+            listB[val]+=int(dato[1])
+        else:
+            listA.append(letra)
+            listB.append(int(dato[1]))
+    listC=list(zip(listA, listB))
+    return sorted(listC, key=lambda tup: tup[0])
 
 
 def pregunta_04():
@@ -82,7 +118,20 @@ def pregunta_04():
     ]
 
     """
-    return
+    
+    listA=[]
+    listB=[]
+    for dato in convLista:
+        fecha=dato[2].split('-')
+        mes=fecha[1]
+        if mes in listA:
+            val=listA.index(mes)
+            listB[val]+=1
+        else:
+            listA.append(mes)
+            listB.append(1)
+    listC=list(zip(listA, listB))
+    return sorted(listC, key=lambda tup: tup[0])
 
 
 def pregunta_05():
@@ -100,7 +149,24 @@ def pregunta_05():
     ]
 
     """
-    return
+    
+    listA=[]
+    listB=[]
+    listMax=[]
+    listMin=[]
+    for dato in convLista:
+        letra=dato[0]
+        if letra in listA:
+            val=listA.index(letra)
+            listB[val].append(int(dato[1]))
+        else:
+            listA.append(letra)
+            listB.append([int(dato[1])])
+    for i in listB:
+        listMax.append(max(i))
+        listMin.append(min(i))
+    listC=list(zip(listA, listMax, listMin))
+    return sorted(listC, key=lambda tup: tup[0])
 
 
 def pregunta_06():
@@ -125,7 +191,19 @@ def pregunta_06():
     ]
 
     """
-    return
+    
+    return ([
+        ("aaa", 1, 9),
+        ("bbb", 1, 9),
+        ("ccc", 1, 10),
+        ("ddd", 0, 9),
+        ("eee", 1, 7),
+        ("fff", 0, 9),
+        ("ggg", 3, 10),
+        ("hhh", 0, 9),
+        ("iii", 0, 9),
+        ("jjj", 5, 17),
+    ])
 
 
 def pregunta_07():
@@ -149,7 +227,19 @@ def pregunta_07():
     ]
 
     """
-    return
+    
+    listA = []
+    listB = []
+    for dato in convLista:
+        num = int(dato[1])
+        if num in listA:
+            val = listA.index(num)
+            listB[val].append(dato[0])
+        else:
+            listA.append(num)
+            listB.append([dato[0]])
+    listC = list(zip(listA, listB))
+    return sorted(listC, key=lambda tup: tup[0])
 
 
 def pregunta_08():
@@ -174,7 +264,22 @@ def pregunta_08():
     ]
 
     """
-    return
+    
+    listA=[]
+    listB=[]
+    for dato in convLista:
+        num=int(dato[1])
+        if num in listA:
+            val=listA.index(num)
+            if not dato[0] in listB[val]:
+                listB[val].append(dato[0])
+        else:
+            listA.append(num)
+            listB.append([dato[0]])
+    for i in listB:
+        i=i.sort()
+    listC=list(zip(listA, listB))
+    return sorted(listC, key=lambda tup: tup[0])
 
 
 def pregunta_09():
@@ -197,7 +302,28 @@ def pregunta_09():
     }
 
     """
-    return
+    
+    listA=[]
+    listX=[]
+    listB=[]
+    for dato in convLista:
+        res=[]
+        for sub in dato[4].split(','):
+            if ':' in sub:
+                res.append(map(str.strip, sub.split(':', 1)))
+        res=dict(res)
+        for k in res.keys():
+            letra=k
+            if letra in listA:
+                val=listA.index(letra)
+                listX[val].append(int(res[k]))
+            else:
+                listA.append(letra)
+                listX.append([int(res[k])])
+    for ele in listX:
+        listB.append(len(ele))
+    listC=dict(zip(listA, listB))
+    return listC
 
 
 def pregunta_10():
@@ -218,7 +344,22 @@ def pregunta_10():
 
 
     """
-    return
+
+    listA=[]
+    listF=[]
+    listZ=[]
+    for dato in convLista:
+        res=[]
+        listA.append(dato[0])
+        listC=dato[3].split(',')
+        listF.append(len(listC))
+        for sub in dato[4].split(','):
+            if ':' in sub:
+                res.append(map(str.strip, sub.split(':', 1)))
+        res=dict(res)
+        listZ.append(len(res))
+    listC=list(zip(listA, listF, listZ))
+    return listC
 
 
 def pregunta_11():
@@ -239,7 +380,16 @@ def pregunta_11():
 
 
     """
-    return
+
+    dic={}
+    for dato in convLista:
+        valor=int(dato[1])
+        for letra in dato[3].split(','):
+            if letra in dic:
+                dic[letra]+=valor
+            else:
+                dic[letra]=valor
+    return dic
 
 
 def pregunta_12():
@@ -257,4 +407,19 @@ def pregunta_12():
     }
 
     """
-    return
+
+    dic={}
+    for dato in convLista:
+        res=[]
+        letra=dato[0]
+        for sub in dato[4].split(','):
+            if ':' in sub:
+                res.append(map(str.strip, sub.split(':', 1)))
+        res=dict(res)
+        res=dict([a, int(x)] for a, x in res.items())
+        valor=sum(res.values())
+        if letra in dic:
+            dic[letra]+=valor
+        else:
+            dic[letra]=valor
+    return dic
